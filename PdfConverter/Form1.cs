@@ -10,8 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows;
-using Spire.Doc;
-using iTextSharp.text.pdf;
+using Microsoft.Win32;
+using Converters;
 
 namespace PdfConverter
 {
@@ -19,6 +19,7 @@ namespace PdfConverter
     {
         private int nbpages;
         private int progressPages;
+        private bool officeNotInstalled = false;
         public PdfConvert()
         {
             InitializeComponent();
@@ -78,53 +79,74 @@ namespace PdfConverter
             this.statut.Text = "Fin du calcul du nombre de fichiers";
             this.statut.Refresh();
         }
-
+        
         void Print(string filepath)
         {
-            this.statut.Text = "Début de la conversion";
-            this.statut.Refresh();
-            this.document.Text = Path.GetFileName(filepath);
-            this.document.Refresh();
-            string fileExt = "." + Path.GetExtension(filepath);
-            string pdfExt = ".pdf";
-            string fileName = Path.GetFileNameWithoutExtension(filepath);
-            string dirPath = Path.GetDirectoryName(filepath);
-            Document doc = new Document();
-            //Pass path of Word Document in LoadFromFile method  
-            doc.LoadFromFile(filepath);
-            //Pass Document Name and FileFormat of Document as Parameter in SaveToFile Method  
-            doc.SaveToFile(dirPath + @"\" + fileName + pdfExt, FileFormat.PDF);
-            //Launch Document  
-            iTextSharp.text.pdf.PdfReader reader1 = new iTextSharp.text.pdf.PdfReader(dirPath + @"\" + fileName + pdfExt);
-            
-            string outfile = filepath.Replace((System.IO.Path.GetFileName(filepath)), (fileName.Replace(fileExt, "") + pdfExt));
-            outfile = outfile.Substring(0, dirPath.Length).Insert(dirPath.Length, string.Empty) + "\\" + fileName + "_tmp" + pdfExt;
-            reader1.RemoveUnusedObjects();
-            PdfReader reader = null;
-            reader = new iTextSharp.text.pdf.PdfReader(dirPath + @"\" + fileName.Replace(pdfExt, string.Empty) + pdfExt);
-            reader.RemoveUnusedObjects();
-            iTextSharp.text.Document doc2 = new iTextSharp.text.Document(reader.GetPageSizeWithRotation(1));
-            iTextSharp.text.pdf.PdfCopy pdfCpy = new iTextSharp.text.pdf.PdfCopy(doc2, new System.IO.FileStream(outfile, System.IO.FileMode.OpenOrCreate));
-            doc2.Open();
-            int pageCount = reader.NumberOfPages;
-            for (int j = 2; j <= pageCount; j++)
+            if (!this.officeNotInstalled)
             {
-                iTextSharp.text.pdf.PdfImportedPage page = pdfCpy.GetImportedPage(reader1, j);
-                pdfCpy.AddPage(page);
+                this.statut.Text = "Début de la conversion";
+                this.statut.Refresh();
+                this.document.Text = Path.GetFileName(filepath);
+                this.document.Refresh();
+                Type officeType = Type.GetTypeFromProgID("Word.Application");
+                bool isLibreOfficeInstalled = this.IsLibreOfficeInstalled();
+                IOffice office;
+                if (isLibreOfficeInstalled)
+                {
+                    office = new LibreOffice();
+                }
+                else if (officeType != null)
+                {
+                    office = new MsOffice();
+                }
+                else
+                {
+                    office = new DefaultOffice();
+                }
+                try
+                {
+                    this.statut.Text = "Conversion en cours";
+                    this.statut.Refresh();
+                    office.ConvertToPdf(filepath);
+                }
+                catch (NotInstalledOfficeException)
+                {
+                    this.officeNotInstalled = true;
+                    this.statut.Text = "Veuillez installer Word ou LibreOffice";
+                    MessageBox.Show("Veuillez installer Word ou LibreOffice");
+                }
             }
-            this.progressBar1.PerformStep();
-            this.progressPages = this.progressPages + 1;
-            this.label1.Text = this.progressPages + " / " + this.nbpages;
-            this.label1.Refresh();
-            this.statut.Text = "Fin de la conversion";
-            this.statut.Refresh();
-            doc.Close();
-            doc2.Close();
-            pdfCpy.Close();
-            reader1.Close();
-            reader.Close();
-            File.Copy(outfile, dirPath + @"\" + fileName + pdfExt, true);
-            File.Delete(outfile);
+        }
+
+        private bool IsLibreOfficeInstalled()
+        {
+            String unoPath = "";
+            bool installed = false;
+            // access 32bit registry entry for latest LibreOffice for Current User
+            Microsoft.Win32.RegistryKey hkcuView32 = Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.CurrentUser, Microsoft.Win32.RegistryView.Registry32);
+            Microsoft.Win32.RegistryKey hkcuUnoInstallPathKey = hkcuView32.OpenSubKey(@"SOFTWARE\LibreOffice\UNO\InstallPath", false);
+            if (hkcuUnoInstallPathKey != null && hkcuUnoInstallPathKey.ValueCount > 0)
+            {
+                unoPath = (string)hkcuUnoInstallPathKey.GetValue(hkcuUnoInstallPathKey.GetValueNames()[hkcuUnoInstallPathKey.ValueCount - 1]);
+            }
+            else
+            {
+                // access 32bit registry entry for latest LibreOffice for Local Machine (All Users)
+                Microsoft.Win32.RegistryKey hklmView32 = Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine, Microsoft.Win32.RegistryView.Registry32);
+                Microsoft.Win32.RegistryKey hklmUnoInstallPathKey = hklmView32.OpenSubKey(@"SOFTWARE\LibreOffice\UNO\InstallPath", false);
+                if (hklmUnoInstallPathKey != null && hklmUnoInstallPathKey.ValueCount > 0)
+                {
+                    installed = true;
+                    unoPath = (string)hklmUnoInstallPathKey.GetValue(hklmUnoInstallPathKey.GetValueNames()[hklmUnoInstallPathKey.ValueCount - 1]);
+                }
+            }
+            if (!Environment.GetEnvironmentVariable("PATH").Contains(unoPath))
+            {
+                Environment.SetEnvironmentVariable("PATH",
+                Environment.GetEnvironmentVariable("PATH") + @";" + unoPath, EnvironmentVariableTarget.Process);
+            }
+
+            return installed;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

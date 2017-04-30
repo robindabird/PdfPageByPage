@@ -32,51 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="itextsharp">
-      <HintPath>..\packages\iTextSharp.5.5.11\lib\itextsharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Barcode">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.Barcode.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Common">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.DataExport">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.DataExport.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.DataExport.ResourceMgr">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.DataExport.ResourceMgr.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Doc">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.Doc.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.DocViewer.Forms">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.DocViewer.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.License">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.License.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.OfficeViewer.Forms">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.OfficeViewer.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Pdf">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.PdfViewer.Asp">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.PdfViewer.Asp.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.PdfViewer.Forms">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.PdfViewer.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Presentation">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.Presentation.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Spreadsheet">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.Spreadsheet.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.XLS">
-      <HintPath>..\packages\Spire.Office.2.15.8\lib\net40\Spire.XLS.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -110,7 +65,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -132,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Graphicloads-Filetype-Pdf.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Converters\Converters.csproj">
+      <Project>{062b352d-0d98-42e0-b065-8228857ed009}</Project>
+      <Name>Converters</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

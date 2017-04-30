@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfPageByPage", "PdfPageByP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfConverter", "PdfConverter\PdfConverter.csproj", "{92CB5541-3971-4C7E-A8F6-17A2423C6200}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Converters", "Converters\Converters.csproj", "{062B352D-0D98-42E0-B065-8228857ED009}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{92CB5541-3971-4C7E-A8F6-17A2423C6200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92CB5541-3971-4C7E-A8F6-17A2423C6200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92CB5541-3971-4C7E-A8F6-17A2423C6200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{062B352D-0D98-42E0-B065-8228857ED009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{062B352D-0D98-42E0-B065-8228857ED009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{062B352D-0D98-42E0-B065-8228857ED009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{062B352D-0D98-42E0-B065-8228857ED009}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
