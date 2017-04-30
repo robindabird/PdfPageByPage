@@ -17,4 +17,4 @@ Third party libraries used :
   TextSharp : used to read the converted file, and to create the final file. And to work around the message of evaluation added to the beginning of each converted files.
 
 ## How to use ?
-Launch the application, click to add files or drag and drop your pdf files.
+Launch the application, click to add files or drag and drop your files.
