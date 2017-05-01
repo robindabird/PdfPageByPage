@@ -63,7 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultOffice.cs" />
+    <Compile Include="FileExtension.cs" />
     <Compile Include="LibreOffice.cs" />
+    <Compile Include="LibreOfficeProperties.cs" />
     <Compile Include="MsOffice.cs" />
     <Compile Include="IOffice.cs" />
     <Compile Include="NotInstalledOfficeException.cs" />
