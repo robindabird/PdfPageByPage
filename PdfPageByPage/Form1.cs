@@ -109,8 +109,8 @@ namespace PdfPageByPage
                 this.statut.Text = "En cours de division " + i + " / " + pageCount;
                 this.statut.Refresh();
                 iTextSharp.text.pdf.PdfReader reader1 = new iTextSharp.text.pdf.PdfReader(filepath);
-                string outfile = filepath.Replace((System.IO.Path.GetFileName(filepath)), (System.IO.Path.GetFileName(filepath).Replace(".pdf", "") + "_" + i.ToString()) + ext);
-                outfile = outfile.Substring(0, dirPath.Length).Insert(dirPath.Length, "") + "\\" + Path.GetFileName(filepath).Replace(".pdf", "") + "_" + i.ToString() + ext;
+                string outfile = filepath.Replace((System.IO.Path.GetFileName(filepath)), (System.IO.Path.GetFileName(filepath).Replace(FileExtension.PDF, string.Empty) + "_" + i.ToString()) + ext);
+                outfile = outfile.Substring(0, dirPath.Length).Insert(dirPath.Length, "") + "\\" + Path.GetFileName(filepath).Replace(FileExtension.PDF, string.Empty) + "_" + i.ToString() + ext;
                 reader1.RemoveUnusedObjects();
                 iTextSharp.text.Document doc = new iTextSharp.text.Document(reader.GetPageSizeWithRotation(currentPage));
                 iTextSharp.text.pdf.PdfCopy pdfCpy = new iTextSharp.text.pdf.PdfCopy(doc, new System.IO.FileStream(outfile, System.IO.FileMode.OpenOrCreate));

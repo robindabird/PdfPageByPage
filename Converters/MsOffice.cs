@@ -13,14 +13,14 @@ namespace Converters
         public Microsoft.Office.Interop.Word.Document wordDocument { get; set; }
         public void ConvertToPdf(string filePath)
         {
-            string fileExt = "." + Path.GetExtension(filePath);
+            string fileExt = Path.GetExtension(filePath);
             string pdfExt = FileExtension.PDF;
             string fileName = Path.GetFileNameWithoutExtension(filePath);
             string dirPath = Path.GetDirectoryName(filePath);
             Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
             wordDocument = appWord.Documents.Open(filePath);
-            wordDocument.ExportAsFixedFormat(dirPath + @"\" + fileName + "." +pdfExt, WdExportFormat.wdExportFormatPDF);
-            appWord.Documents.Close();
+            wordDocument.ExportAsFixedFormat(dirPath + @"\" + fileName + pdfExt, WdExportFormat.wdExportFormatPDF);
+            wordDocument.Close();
         }
     }
 }

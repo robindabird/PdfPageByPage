@@ -8,9 +8,9 @@ namespace Converters
 {
     public static class FileExtension
     {
-        public const string PDF = "pdf";
-        public const string XLS = "xls";
-        public const string XLSX = "xlsx";
-        public const string ODS = "ods";
+        public const string PDF = ".pdf";
+        public const string XLS = ".xls";
+        public const string XLSX = ".xlsx";
+        public const string ODS = ".ods";
     }
 }

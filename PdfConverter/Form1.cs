@@ -102,7 +102,7 @@ namespace PdfConverter
         {
             if (!this.officeNotInstalled)
             {
-                this.UpdateTextLabel(this.statut, RessourceMessage.STATUS_CONVERT_BEGIN);
+                this.UpdateTextLabel(this.statut, this.ressourceManager.GetString(RessourceMessage.STATUS_CONVERT_BEGIN));
                 this.UpdateTextLabel(this.document, Path.GetFileName(filepath));
                 Type officeType = Type.GetTypeFromProgID("Word.Application");
                 bool isLibreOfficeInstalled = this.IsLibreOfficeInstalled();
@@ -122,15 +122,17 @@ namespace PdfConverter
                 }
                 try
                 {
-                    this.UpdateTextLabel(this.statut, RessourceMessage.STATUS_CONVERT_LOADING);
+                    this.UpdateTextLabel(this.statut, this.ressourceManager.GetString(RessourceMessage.STATUS_CONVERT_LOADING));
                     office.ConvertToPdf(filepath);
-                    this.UpdateTextLabel(this.statut, RessourceMessage.STATUS_CONVERT_END);
+                    this.UpdateTextLabel(this.statut, this.ressourceManager.GetString(RessourceMessage.STATUS_CONVERT_END));
+                    this.UpdateTextLabel(this.label1, ++this.progressPages + "/" + this.nbpages);
+                    this.progressBar1.PerformStep();
                 }
                 catch (NotInstalledOfficeException)
                 {
                     this.officeNotInstalled = true;
-                    this.UpdateTextLabel(this.statut, RessourceMessage.STATUS_ERROR_OFFICE);
-                    MessageBox.Show(RessourceMessage.STATUS_ERROR_OFFICE);
+                    this.UpdateTextLabel(this.statut, this.ressourceManager.GetString(RessourceMessage.STATUS_ERROR_OFFICE));
+                    MessageBox.Show(this.ressourceManager.GetString(RessourceMessage.STATUS_ERROR_OFFICE));
                 }
             }
         }
@@ -177,7 +179,10 @@ namespace PdfConverter
                 foreach (String file in openFileDialog1.FileNames)
                 {
                     // Create a PictureBox.
-                    this.Print(file);
+                    if (Path.GetExtension(file) != FileExtension.PDF)
+                    {
+                        this.Print(file);
+                    }
                 }
             }
 

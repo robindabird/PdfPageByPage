@@ -40,7 +40,7 @@ namespace Converters
                     pv[0].Value = new uno.Any(LibreOfficeProperties.WRITER_PDF_EXPORT);
                     break;
             }
-            xStorable.storeToURL("file:///" + (dirPath + @"\" + fileName + "." + pdfExt).Replace('\\', '/'), pv);
+            xStorable.storeToURL("file:///" + (dirPath + @"\" + fileName + pdfExt).Replace('\\', '/'), pv);
             var xClosable = (XCloseable)xComponent;
             xClosable.close(true);
         }
