@@ -17,7 +17,7 @@ namespace PdfPageByPage
         /// The main entry of the application
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

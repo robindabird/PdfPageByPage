@@ -48,7 +48,7 @@ namespace PdfConverter
             this.DragDrop += new DragEventHandler(this.PdfConvert_DragDrop);
             this.DragLeave += new EventHandler(this.PdfConvert_DragLeave);
             this.InSleep();
-            this.ressourceManager = new ResourceManager("PdfConverter.Ressource.Res", typeof(PdfConvert).Assembly);
+            this.ressourceManager = new ResourceManager(ResourceManagerProperties.RESOURCE, typeof(PdfConvert).Assembly);
             this.InitLabel();
         }
 
@@ -153,23 +153,7 @@ namespace PdfConverter
             {
                 this.UpdateTextLabel(this.statut, this.ressourceManager.GetString(ResourceMessage.STATUS_CONVERT_BEGIN));
                 this.UpdateTextLabel(this.document, Path.GetFileName(filepath));
-                Type officeType = Type.GetTypeFromProgID("Word.Application");
-                bool isLibreOfficeInstalled = this.IsLibreOfficeInstalled();
-                IOffice office;
-                isLibreOfficeInstalled = false;
-                if (isLibreOfficeInstalled)
-                {
-                    office = new LibreOffice();
-                }
-                else if (officeType != null)
-                {
-                    office = new MsOffice();
-                }
-                else
-                {
-                    office = new DefaultOffice();
-                }
-
+                IOffice office = OfficeHelper.GetOffice();
                 try
                 {
                     this.UpdateTextLabel(this.statut, this.ressourceManager.GetString(ResourceMessage.STATUS_CONVERT_LOADING));
@@ -185,45 +169,6 @@ namespace PdfConverter
                     MessageBox.Show(this.ressourceManager.GetString(ResourceMessage.STATUS_ERROR_OFFICE));
                 }
             }
-        }
-
-        /// <summary>
-        /// Check if LIBREOFFICE is installed
-        /// </summary>
-        /// <returns>True if LIBREOFFICE is installed, false otherwise</returns>
-        private bool IsLibreOfficeInstalled()
-        {
-            string unoPath = string.Empty;
-            bool installed = false;
-
-            // access 32bit registry entry for latest LibreOffice for Current User
-            Microsoft.Win32.RegistryKey hkcuView32 = Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.CurrentUser, Microsoft.Win32.RegistryView.Registry32);
-            Microsoft.Win32.RegistryKey hkcuUnoInstallPathKey = hkcuView32.OpenSubKey(@"SOFTWARE\LibreOffice\UNO\InstallPath", false);
-            if (hkcuUnoInstallPathKey != null && hkcuUnoInstallPathKey.ValueCount > 0)
-            {
-                unoPath = (string)hkcuUnoInstallPathKey.GetValue(hkcuUnoInstallPathKey.GetValueNames()[hkcuUnoInstallPathKey.ValueCount - 1]);
-            }
-            else
-            {
-                // access 32bit registry entry for latest LibreOffice for Local Machine (All Users)
-                Microsoft.Win32.RegistryKey hklmView32 = Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine, Microsoft.Win32.RegistryView.Registry32);
-                Microsoft.Win32.RegistryKey hklmUnoInstallPathKey = hklmView32.OpenSubKey(@"SOFTWARE\LibreOffice\UNO\InstallPath", false);
-                if (hklmUnoInstallPathKey != null && hklmUnoInstallPathKey.ValueCount > 0)
-                {
-                    installed = true;
-                    unoPath = (string)hklmUnoInstallPathKey.GetValue(hklmUnoInstallPathKey.GetValueNames()[hklmUnoInstallPathKey.ValueCount - 1]);
-                }
-            }
-
-            if (!Environment.GetEnvironmentVariable("PATH").Contains(unoPath))
-            {
-                Environment.SetEnvironmentVariable(
-                    "PATH",
-                    Environment.GetEnvironmentVariable("PATH") + @";" + unoPath,
-                    EnvironmentVariableTarget.Process);
-            }
-
-            return installed;
         }
 
         /// <summary>

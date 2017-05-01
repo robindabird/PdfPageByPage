@@ -40,11 +40,21 @@ namespace PdfPageByPage
             this.InSleep();
         }
 
+        /// <summary>
+        /// Processed after the users leaves the drag action
+        /// </summary>
+        /// <param name="sender">The object which sends the event</param>
+        /// <param name="e">The arguments</param>
         private void PdfSplitter_DragLeave(object sender, EventArgs e)
         {
             this.InSleep();
         }
 
+        /// <summary>
+        /// Processed when the user drags files onto the application
+        /// </summary>
+        /// <param name="sender">The object which sends the event</param>
+        /// <param name="e">The arguments</param>
         private void PdfSplitter_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -54,6 +64,11 @@ namespace PdfPageByPage
             }
         }
 
+        /// <summary>
+        /// Processed when the user drops some files
+        /// </summary>
+        /// <param name="sender">The object which sends the event</param>
+        /// <param name="e">The arguments</param>
         private void PdfSplitter_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -63,13 +78,17 @@ namespace PdfPageByPage
             {
                 if (Path.GetExtension(file) == FileExtension.PDF)
                 {
-                    this.Print(file);
+                    this.Split(file);
                 }
             }
 
             this.InSleep();
         }
 
+        /// <summary>
+        /// Counts the number of pages to split
+        /// </summary>
+        /// <param name="files">The list of files to split</param>
         private void ProcessNbPages(string[] files)
         {
             this.nbpages = 0;
@@ -78,6 +97,7 @@ namespace PdfPageByPage
             {
                 return;
             }
+
             this.statut.Text = "Début du calcul du nombre total de pages";
             this.statut.Refresh();
             foreach (string filepath in files)
@@ -101,7 +121,11 @@ namespace PdfPageByPage
             this.statut.Refresh();
         }
 
-        void Print(string filepath)
+        /// <summary>
+        /// Splits the PDF file
+        /// </summary>
+        /// <param name="filepath">The file to split</param>
+        private void Split(string filepath)
         {
             this.statut.Text = "Début de la division";
             this.statut.Refresh();
@@ -121,8 +145,8 @@ namespace PdfPageByPage
                 this.statut.Text = "En cours de division " + i + " / " + pageCount;
                 this.statut.Refresh();
                 iTextSharp.text.pdf.PdfReader reader1 = new iTextSharp.text.pdf.PdfReader(filepath);
-                string outfile = filepath.Replace((System.IO.Path.GetFileName(filepath)), (System.IO.Path.GetFileName(filepath).Replace(FileExtension.PDF, string.Empty) + "_" + i.ToString()) + ext);
-                outfile = outfile.Substring(0, dirPath.Length).Insert(dirPath.Length, "") + "\\" + Path.GetFileName(filepath).Replace(FileExtension.PDF, string.Empty) + "_" + i.ToString() + ext;
+                string outfile = filepath.Replace(System.IO.Path.GetFileName(filepath), (System.IO.Path.GetFileName(filepath).Replace(FileExtension.PDF, string.Empty) + "_" + i.ToString()) + ext);
+                outfile = outfile.Substring(0, dirPath.Length).Insert(dirPath.Length, string.Empty) + "\\" + Path.GetFileName(filepath).Replace(FileExtension.PDF, string.Empty) + "_" + i.ToString() + ext;
                 reader1.RemoveUnusedObjects();
                 iTextSharp.text.Document doc = new iTextSharp.text.Document(reader.GetPageSizeWithRotation(currentPage));
                 iTextSharp.text.pdf.PdfCopy pdfCpy = new iTextSharp.text.pdf.PdfCopy(doc, new System.IO.FileStream(outfile, System.IO.FileMode.OpenOrCreate));
@@ -133,6 +157,7 @@ namespace PdfPageByPage
                     pdfCpy.AddPage(page);
                     currentPage += 1;
                 }
+
                 this.progressBar1.PerformStep();
                 this.progressPages = this.progressPages + 1;
                 this.label1.Text = this.progressPages + " / " + this.nbpages;
@@ -143,12 +168,15 @@ namespace PdfPageByPage
                 pdfCpy.Close();
                 reader1.Close();
                 reader.Close();
-
             }
-
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Processed after the user clicks onto the picture
+        /// </summary>
+        /// <param name="sender">The object which sends the event</param>
+        /// <param name="e">The arguments</param>
+        private void PictureBox1_Click(object sender, EventArgs e)
         {
             DialogResult dr = this.openFileDialog1.ShowDialog();
             if (dr == System.Windows.Forms.DialogResult.OK)
@@ -156,28 +184,42 @@ namespace PdfPageByPage
                 // Read the files
                 this.ProcessNbPages(openFileDialog1.FileNames);
                 this.progressBar1.Value = 1;
-                foreach (String file in openFileDialog1.FileNames)
+                foreach (string file in openFileDialog1.FileNames)
                 {
                     // Create a PictureBox.
-                    this.Print(file);
+                    this.Split(file);
                 }
             }
 
             this.InSleep();
         }
+
+        /// <summary>
+        /// Updates all the UI colors to make them appear as processing
+        /// </summary>
         private void InAction()
         {
             this.ChangeMode(Color.FromArgb(197, 56, 39), Color.White, PdfPageByPage.Properties.Resources.drop);            
         }
+
+        /// <summary>
+        /// Updates all the UI colors to make them appear as not processing
+        /// </summary>
         private void InSleep()
         {
             this.ChangeMode(Color.White, Color.FromArgb(197, 56, 39), PdfPageByPage.Properties.Resources.drag);
         }
 
-        private void ChangeMode(Color backColor, Color foreColor, Bitmap ressource)
+        /// <summary>
+        /// Changes the back color, fore color and the bitmap picture
+        /// </summary>
+        /// <param name="backColor">The back color of the application</param>
+        /// <param name="foreColor">The fore color of the label</param>
+        /// <param name="resource">The bitmap resource</param>
+        private void ChangeMode(Color backColor, Color foreColor, Bitmap resource)
         {
             this.pictureBox1.BackColor = backColor;
-            this.pictureBox1.Image = ressource;
+            this.pictureBox1.Image = resource;
             this.label1.BackColor = backColor;
             this.label1.ForeColor = foreColor;
             this.document.BackColor = backColor;

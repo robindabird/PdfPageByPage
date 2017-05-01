@@ -1769,11 +1769,11 @@
       </violation>
     </violations>
   </sourcecode>
-  <sourcecode name=".NETFramework,Version=v4.5.AssemblyAttributes.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="RessourceMessage.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017/05/01 16:33:16.170</styleCop>
       <settingsFile>2017/05/01 17:58:11.807</settingsFile>
-      <sourceFile>2016/10/23 22:12:02.060</sourceFile>
+      <sourceFile>2017/05/01 18:00:51.254</sourceFile>
       <parser>2017/05/01 16:33:16.170</parser>
       <StyleCop.CSharp.DocumentationRules>2017/05/01 16:33:16.170</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>403180313</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -1790,7 +1790,13 @@
       <StyleCop.CSharp.SpacingRules>2017/05/01 16:33:16.170</StyleCop.CSharp.SpacingRules>
       <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
     </timestamps>
-    <violations />
+    <violations>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="FileHeaderFileNameDocumentationMustMatchFileName" ruleCheckId="SA1638">
+        <context>The file attribute in the file header's copyright tag must contain the name of the file.</context>
+        <line>1</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
   </sourcecode>
   <sourcecode name="Program.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
@@ -1838,35 +1844,6 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <sourcecode name="RessourceMessage.cs" parser="StyleCop.CSharp.CsParser">
-    <timestamps>
-      <styleCop>2017/05/01 16:33:16.170</styleCop>
-      <settingsFile>2017/05/01 17:58:11.807</settingsFile>
-      <sourceFile>2017/05/01 18:00:51.254</sourceFile>
-      <parser>2017/05/01 16:33:16.170</parser>
-      <StyleCop.CSharp.DocumentationRules>2017/05/01 16:33:16.170</StyleCop.CSharp.DocumentationRules>
-      <StyleCop.CSharp.DocumentationRules.FilesHashCode>403180313</StyleCop.CSharp.DocumentationRules.FilesHashCode>
-      <StyleCop.CSharp.LayoutRules>2017/05/01 16:33:16.170</StyleCop.CSharp.LayoutRules>
-      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
-      <StyleCop.CSharp.MaintainabilityRules>2017/05/01 16:33:16.170</StyleCop.CSharp.MaintainabilityRules>
-      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
-      <StyleCop.CSharp.NamingRules>2017/05/01 16:33:16.170</StyleCop.CSharp.NamingRules>
-      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
-      <StyleCop.CSharp.OrderingRules>2017/05/01 16:33:16.170</StyleCop.CSharp.OrderingRules>
-      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
-      <StyleCop.CSharp.ReadabilityRules>2017/05/01 16:33:16.170</StyleCop.CSharp.ReadabilityRules>
-      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
-      <StyleCop.CSharp.SpacingRules>2017/05/01 16:33:16.170</StyleCop.CSharp.SpacingRules>
-      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
-    </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="FileHeaderFileNameDocumentationMustMatchFileName" ruleCheckId="SA1638">
-        <context>The file attribute in the file header's copyright tag must contain the name of the file.</context>
-        <line>1</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
   <sourcecode name="ResourceMessage.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017/05/01 16:33:16.170</styleCop>
@@ -1890,14 +1867,60 @@
     </timestamps>
     <violations />
   </sourcecode>
+  <sourcecode name=".NETFramework,Version=v4.5.AssemblyAttributes.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017/05/01 16:33:16.170</styleCop>
+      <settingsFile>2017/05/01 17:58:11.807</settingsFile>
+      <sourceFile>2016/10/23 22:12:02.060</sourceFile>
+      <parser>2017/05/01 16:33:16.170</parser>
+      <StyleCop.CSharp.DocumentationRules>2017/05/01 16:33:16.170</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>403180313</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017/05/01 16:33:16.170</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017/05/01 16:33:16.170</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017/05/01 16:33:16.170</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017/05/01 16:33:16.170</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017/05/01 16:33:16.170</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017/05/01 16:33:16.170</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
   <project key="-1267264323">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <sourcecode name="ResourceManagerProperties.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2017/05/01 16:33:16.170</styleCop>
+      <settingsFile>2017/05/01 17:58:11.807</settingsFile>
+      <sourceFile>2017/05/02 01:16:34.055</sourceFile>
+      <parser>2017/05/01 16:33:16.170</parser>
+      <StyleCop.CSharp.DocumentationRules>2017/05/01 16:33:16.170</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>403180313</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2017/05/01 16:33:16.170</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2017/05/01 16:33:16.170</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2017/05/01 16:33:16.170</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2017/05/01 16:33:16.170</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2017/05/01 16:33:16.170</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2017/05/01 16:33:16.170</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
   <sourcecode name="PdfConvert.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2017/05/01 16:33:16.170</styleCop>
       <settingsFile>2017/05/01 17:58:11.807</settingsFile>
-      <sourceFile>2017/05/01 18:03:00.560</sourceFile>
+      <sourceFile>2017/05/02 01:16:33.943</sourceFile>
       <parser>2017/05/01 16:33:16.170</parser>
       <StyleCop.CSharp.DocumentationRules>2017/05/01 16:33:16.170</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>403180313</StyleCop.CSharp.DocumentationRules.FilesHashCode>

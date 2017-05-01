@@ -62,15 +62,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultOffice.cs" />
-    <Compile Include="FileCustom.cs" />
-    <Compile Include="FileExtension.cs" />
-    <Compile Include="FileHelper.cs" />
-    <Compile Include="LibreOffice.cs" />
-    <Compile Include="LibreOfficeProperties.cs" />
-    <Compile Include="MsOffice.cs" />
-    <Compile Include="IOffice.cs" />
-    <Compile Include="NotInstalledOfficeException.cs" />
+    <Compile Include="Common\DefaultOffice.cs" />
+    <Compile Include="Common\FileCustom.cs" />
+    <Compile Include="Common\FileExtension.cs" />
+    <Compile Include="Common\FileHelper.cs" />
+    <Compile Include="Common\OfficeHelper.cs" />
+    <Compile Include="LibreOffice\LibreOffice.cs" />
+    <Compile Include="LibreOffice\LibreOfficeHelper.cs" />
+    <Compile Include="LibreOffice\LibreOfficeProperties.cs" />
+    <Compile Include="MSOffice\MsOffice.cs" />
+    <Compile Include="Common\IOffice.cs" />
+    <Compile Include="MSOffice\MSOfficeHelper.cs" />
+    <Compile Include="MSOffice\MSOfficeProperties.cs" />
+    <Compile Include="Common\NotInstalledOfficeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
