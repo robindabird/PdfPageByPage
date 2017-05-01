@@ -1,4 +1,5 @@
-﻿using iTextSharp.text.pdf;
+﻿using Converters;
+using iTextSharp.text.pdf;
 using Spire.Pdf;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,10 @@ namespace PdfPageByPage
             this.progressBar1.Value = 1;
             foreach (string file in files)
             {
-                this.Print(file);
+                if (Path.GetExtension(file) == FileExtension.PDF)
+                {
+                    this.Print(file);
+                }
             }
             this.InSleep();
         }
