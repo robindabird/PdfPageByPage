@@ -12,7 +12,9 @@ using System.Windows.Forms;
 using System.Windows;
 using Microsoft.Win32;
 using Converters;
-
+using System.Globalization;
+using System.Globalization;
+using System.Resources;
 namespace PdfConverter
 {
     public partial class PdfConvert : Form
@@ -20,6 +22,8 @@ namespace PdfConverter
         private int nbpages;
         private int progressPages;
         private bool officeNotInstalled = false;
+        ResourceManager ressourceManager;
+        CultureInfo cultureInfo; 
         public PdfConvert()
         {
             InitializeComponent();
@@ -28,6 +32,14 @@ namespace PdfConverter
             this.DragDrop += new DragEventHandler(Form1_DragDrop);
             this.DragLeave += new EventHandler(Form1_DragLeave);
             this.InSleep();
+            this.ressourceManager = new ResourceManager("PdfConverter.Ressource.Res", typeof(PdfConvert).Assembly);
+            this.InitCultureInfo();
+        }
+
+        public void InitCultureInfo()
+        {
+            this.UpdateTextLabel(this.document, ressourceManager.GetString(RessourceMessage.DOCUMENT_NONE));
+            this.UpdateTextLabel(this.statut, ressourceManager.GetString(RessourceMessage.STATUS_NONE));
         }
 
         void Form1_DragLeave(object sender, EventArgs e)
@@ -51,7 +63,10 @@ namespace PdfConverter
             this.progressBar1.Value = 1;
             foreach (string file in files)
             {
-                this.Print(file);
+                if (Path.GetExtension(file).ToLowerInvariant() != FileExtension.PDF)
+                {
+                    this.Print(file);
+                }
             }
             this.InSleep();
         }
@@ -64,8 +79,8 @@ namespace PdfConverter
             {
                 return;
             }
-            this.statut.Text = "Début du calcul du nombre fichiers";
-            this.statut.Refresh();
+
+            this.UpdateTextLabel(this.statut, this.ressourceManager.GetString(RessourceMessage.STATUS_CALCUL_NB_FILES));
             foreach (string filepath in files)
             {
                 this.nbpages += 1;
@@ -74,23 +89,25 @@ namespace PdfConverter
             this.progressBar1.Minimum = 1;
             this.progressBar1.Maximum = this.nbpages;
             this.progressBar1.Step = 1;
-            this.label1.Text = "0 / " + this.nbpages;
-            this.label1.Refresh();
-            this.statut.Text = "Fin du calcul du nombre de fichiers";
-            this.statut.Refresh();
+            this.UpdateTextLabel(this.label1, "0 / " + this.nbpages);
+            this.UpdateTextLabel(this.statut, this.ressourceManager.GetString(RessourceMessage.STATUS_END_CALCUL_NB_FILES));
+        }
+        public void UpdateTextLabel(Label label, string text)
+        {
+            label.Text = text;
+            label.Refresh();
         }
         
         void Print(string filepath)
         {
             if (!this.officeNotInstalled)
             {
-                this.statut.Text = "Début de la conversion";
-                this.statut.Refresh();
-                this.document.Text = Path.GetFileName(filepath);
-                this.document.Refresh();
+                this.UpdateTextLabel(this.statut, RessourceMessage.STATUS_CONVERT_BEGIN);
+                this.UpdateTextLabel(this.document, Path.GetFileName(filepath));
                 Type officeType = Type.GetTypeFromProgID("Word.Application");
                 bool isLibreOfficeInstalled = this.IsLibreOfficeInstalled();
                 IOffice office;
+                isLibreOfficeInstalled = false;
                 if (isLibreOfficeInstalled)
                 {
                     office = new LibreOffice();
@@ -105,15 +122,15 @@ namespace PdfConverter
                 }
                 try
                 {
-                    this.statut.Text = "Conversion en cours";
-                    this.statut.Refresh();
+                    this.UpdateTextLabel(this.statut, RessourceMessage.STATUS_CONVERT_LOADING);
                     office.ConvertToPdf(filepath);
+                    this.UpdateTextLabel(this.statut, RessourceMessage.STATUS_CONVERT_END);
                 }
                 catch (NotInstalledOfficeException)
                 {
                     this.officeNotInstalled = true;
-                    this.statut.Text = "Veuillez installer Word ou LibreOffice";
-                    MessageBox.Show("Veuillez installer Word ou LibreOffice");
+                    this.UpdateTextLabel(this.statut, RessourceMessage.STATUS_ERROR_OFFICE);
+                    MessageBox.Show(RessourceMessage.STATUS_ERROR_OFFICE);
                 }
             }
         }

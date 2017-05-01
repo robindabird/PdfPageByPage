@@ -10,3 +10,9 @@ C:\Users\robin\onedrive\documents\visual studio 2013\Projects\PdfPageByPage\PdfC
 C:\Users\robin\onedrive\documents\visual studio 2013\Projects\PdfPageByPage\PdfConverter\bin\Debug\cli_cppuhelper.dll
 C:\Users\robin\OneDrive\Documents\Visual Studio 2013\Projects\PdfPageByPage\PdfConverter\bin\Debug\Converters.dll
 C:\Users\robin\OneDrive\Documents\Visual Studio 2013\Projects\PdfPageByPage\PdfConverter\bin\Debug\Converters.pdb
+C:\Users\robin\onedrive\documents\visual studio 2013\Projects\PdfPageByPage\PdfConverter\obj\Debug\PdfConverter.Ressource.Res.fr.resources
+C:\Users\robin\onedrive\documents\visual studio 2013\Projects\PdfPageByPage\PdfConverter\bin\Debug\fr\PdfConverter.resources.dll
+C:\Users\robin\onedrive\documents\visual studio 2013\Projects\PdfPageByPage\PdfConverter\obj\Debug\fr\PdfConverter.resources.dll
+C:\Users\robin\onedrive\documents\visual studio 2013\Projects\PdfPageByPage\PdfConverter\bin\Debug\en\PdfConverter.resources.dll
+C:\Users\robin\onedrive\documents\visual studio 2013\Projects\PdfPageByPage\PdfConverter\obj\Debug\PdfConverter.Ressource.Res.en.resources
+C:\Users\robin\onedrive\documents\visual studio 2013\Projects\PdfPageByPage\PdfConverter\obj\Debug\en\PdfConverter.resources.dll

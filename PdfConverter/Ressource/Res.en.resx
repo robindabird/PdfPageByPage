@@ -117,17 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="drag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\drag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="document_none" xml:space="preserve">
+    <value>No document</value>
   </data>
-  <data name="drop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\drop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="status_calcul_nb_files" xml:space="preserve">
+    <value>Starting to calculate the number of files</value>
   </data>
-  <data name="Graphicloads_Filetype_Pdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Graphicloads-Filetype-Pdf.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="status_convert_begin" xml:space="preserve">
+    <value>Starting the conversion</value>
   </data>
-  <data name="settings_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\settings_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="status_convert_end" xml:space="preserve">
+    <value>Conversion ok</value>
+  </data>
+  <data name="status_convert_loading" xml:space="preserve">
+    <value>Conversion loading</value>
+  </data>
+  <data name="status_end_calcul_nb_files" xml:space="preserve">
+    <value>Ending to calculate the number of files</value>
+  </data>
+  <data name="status_error_office" xml:space="preserve">
+    <value>Please install MS Word or LibreOffice</value>
+  </data>
+  <data name="status_none" xml:space="preserve">
+    <value>No process</value>
   </data>
 </root>

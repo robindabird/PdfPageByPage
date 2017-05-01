@@ -97,7 +97,7 @@
             this.progressBar1.Size = new System.Drawing.Size(467, 23);
             this.progressBar1.TabIndex = 5;
             // 
-            // PdfSplitter
+            // PdfConvert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,7 +111,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(512, 388);
             this.MinimumSize = new System.Drawing.Size(512, 388);
-            this.Name = "PdfSplitter";
+            this.Name = "PdfConvert";
             this.Text = "HCD - PdfSplitter";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
