@@ -1,4 +1,9 @@
-﻿using System.Reflection;
+﻿// <copyright file="AssemblyInfo.cs" company="OpenSource">
+// Copyright (c) 2017 All Rights Reserved
+// </copyright>
+// <author>Robin Portigliatti</author>
+// <date>01/05/2017 </date>
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 

@@ -63,7 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultOffice.cs" />
+    <Compile Include="FileCustom.cs" />
     <Compile Include="FileExtension.cs" />
+    <Compile Include="FileHelper.cs" />
     <Compile Include="LibreOffice.cs" />
     <Compile Include="LibreOfficeProperties.cs" />
     <Compile Include="MsOffice.cs" />
@@ -71,7 +73,11 @@
     <Compile Include="NotInstalledOfficeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\StyleCop.MSBuild.4.7.55.0\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.55.0\build\StyleCop.MSBuild.Targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

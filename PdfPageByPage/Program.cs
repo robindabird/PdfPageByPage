@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿// <copyright file="Program.cs" company="OpenSource">
+// Copyright (c) 2017 All Rights Reserved
+// </copyright>
+// <author>Robin Portigliatti</author>
+// <date>01/05/2017 </date>
 namespace PdfPageByPage
 {
-    static class Program
+    using System;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The main entry of <see cref="PdfSplitter" /> application
+    /// </summary>
+    public static class Program
     {
         /// <summary>
-        /// Point d'entrée principal de l'application.
+        /// The main entry of the application
         /// </summary>
         [STAThread]
         static void Main()

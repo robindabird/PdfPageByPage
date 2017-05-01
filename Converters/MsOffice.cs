@@ -1,26 +1,29 @@
-﻿using Microsoft.Office.Interop.Word;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// <copyright file="MSOffice.cs" company="OpenSource">
+// Copyright (c) 2017 All Rights Reserved
+// </copyright>
+// <author>Robin Portigliatti</author>
+// <date>01/05/2017 </date>
 namespace Converters
 {
+    using Microsoft.Office.Interop.Word;
+
+    /// <summary>
+    /// Class representing the office of Microsoft Word
+    /// </summary>
     public class MsOffice : IOffice
     {
-        public Microsoft.Office.Interop.Word.Document wordDocument { get; set; }
+        /// <summary>
+        /// Converts the file to a PDF file
+        /// </summary>
+        /// <param name="filePath">The full path of the file to be converted</param>
         public void ConvertToPdf(string filePath)
         {
-            string fileExt = Path.GetExtension(filePath);
             string pdfExt = FileExtension.PDF;
-            string fileName = Path.GetFileNameWithoutExtension(filePath);
-            string dirPath = Path.GetDirectoryName(filePath);
+            Microsoft.Office.Interop.Word.Document wordDocument;
+            FileCustom fileCustom = FileHelper.GetFileInfo(filePath);
             Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
             wordDocument = appWord.Documents.Open(filePath);
-            wordDocument.ExportAsFixedFormat(dirPath + @"\" + fileName + pdfExt, WdExportFormat.wdExportFormatPDF);
-            wordDocument.Close();
+            wordDocument.ExportAsFixedFormat(fileCustom.Directory + @"\" + fileCustom.Name + pdfExt, WdExportFormat.wdExportFormatPDF);
         }
     }
 }
